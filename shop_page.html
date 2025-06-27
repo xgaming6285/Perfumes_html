@@ -184,5 +184,129 @@
         </a>
       </div>
     </div>
+    <script>
+      const products = [
+        {
+          name: 'Midnight Bloom',
+          price: 120,
+          scent: 'Floral',
+          collection: 'Signature',
+          imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCLwcrnoaxh9dxJ49luYKFvvDaqsd_l8_xNc6RYF5n_JzPRpWevIlxFjiMVDs4d1wakIRL1k1jdeMe4CS-ikb4T4aKlEF2AtXhaxNhBvevHZ6n3mfRwSe9fxH8h4LoGh_jXzVQAnhVT-bZpVX-4YXyPH_b9ccLBD7B01-xDh-2drFt7GOTLjFsAeA8tW6UVEQz9cug-a1QTzlhFmAFNnhdIFz_lCiQ3uePc4EQl46dCkzxw0V-aYbUTIHDgmjMvFWZiO8JrMLbyRxLy'
+        },
+        {
+          name: 'Citrus Grove',
+          price: 95,
+          scent: 'Citrus',
+          collection: 'Fresh',
+          imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAmyLA8iT5kEyGZYlxsgTX2NTUn4kvC22e0CCKhZ4k3B6YjVeGzCVRxOwQmPfwF698CPIcFMphhE8EvLFBEj7uRe_ppwJK48SmIYC8hsTwz7f2vSQutGSVE6Vd23ofmuQaseDmmKQuGhN2K7QTS6UmyrkEdWXn3AGERaMFpVp2Wd4xsIsFPmzqzI2tYQ_8gzM1WedyWqtiNaWfdA5WQ4ueH_KnS49Wt2fZub646aa4MoDMwxRKtVCLyxmOY0vzkmWM-6RKBQY9z5rIQ'
+        },
+        {
+          name: 'Velvet Dusk',
+          price: 150,
+          scent: 'Woody',
+          collection: 'Luxury',
+          imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAbT0d9dYjZ3QQMJGp96lGMtocfZNzbnegg3Ey6zjW14A_k4FHunIdGBBq9Iqrwh9XkSFS6w_dl9KjSnf0bfp4Yj0HcSk6q9WLfSnHi7Zx5SPV39KmRrXvJCmcT0YN--agFhgR6qa6HvGd0VXtuyrokteDqH0h-FxkJbIw7yUXQ5BSkTjS4ZTaDV2GVogJOH_QXmbr_76_oTf-xkGbxA1lCs6-DeiqoVDpDsvV9bSbg94NkyJJybWx78YllhRgMzfPYwZFQMNaAKoHn'
+        },
+        {
+          name: 'Ocean Mist',
+          price: 110,
+          scent: 'Fresh',
+          collection: 'Coastal',
+          imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuAwbbHiaN9LIXKodny_Brg8AKrnTMpS30nqJuq0UV3jFfoZ45SziBbhfkqDWVhj4DKNY5h9JevJ9pTUwc9cLKuJN5mLrR1kAUB4ObibBDA5IVD9vJZ5om-bjukhN5I0VP5b9WqMhCzYM1k-gL4XB-R6XC5MSRSW3dV0tsNuHCfFbSmw9UA8yjDgNlCYn2J0wnbv_YHBGXfIHyRiT3fB1U0ePYRh3An3cCpvsjiymbSuFQP9oV_7svsuqJqNY9hyWxf6vyAWo-EkAK5D'
+        },
+        {
+          name: 'Spiced Amber',
+          price: 135,
+          scent: 'Spicy',
+          collection: 'Exotic',
+          imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBGhc7wwdj7qOr1AKHNCJ8UcNVLESy197YdFpXwgYTlp9nvE2NnYrHOJG4zoq_3R7UdseDkdm4JYSAugh-MKpecYptVBNQKeIdyNoZaBYi5u8J7DpJf2sz6tFgeF__q0jo83JX-y62K03HjAGa8f1X1xnbw_-Ze3-Ny-binN5TZLs62WOrTGA6fBsQHGxKibQQEbPjXxlaFRLxH5ybO64HO8Qb8RRXZxWhA28t3fSnrAzUwJ0S6QhuXpXavssdbJp4WN9-KAKWOx6Wa'
+        },
+        {
+          name: 'Floral Whisper',
+          price: 105,
+          scent: 'Floral',
+          collection: 'Classic',
+          imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCZZs5rCYTpawgZxZwY0qbo61T1vqNq630f5XnGDuJVuvt4-5KM1kCR9TWYF2pEdqfMeghZQPQssG68avNz2miUt8T6WMQT-7RC2_rvhRC_e1hQIsgWsCUmomQCOpgiKlsZbKgWcMJgvdW3ZASVWzTb9XZfF_hlAn3DZaIyk-oMf1Iys8v2gelGYlgKURRAG2L1DbzeSzO0tDL3It8hbn6qqQ8rJnzvaV0T0WBsxOYVR0lup01hX7_GKVdoSne8dGJ7D1_r8A3HlCsI'
+        }
+      ];
+
+      const productContainer = document.querySelector('.grid');
+      let currentSort = 'default';
+      let currentFilters = {
+        scent: 'all',
+        collection: 'all'
+      };
+
+      function displayProducts(productsToShow) {
+        productContainer.innerHTML = '';
+        for (const product of productsToShow) {
+          const productElement = `
+            <div class="flex flex-col gap-3 pb-3">
+              <div
+                class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-xl"
+                style='background-image: url("${product.imageUrl}");'
+              ></div>r
+              <div>
+                <p class="text-white text-base font-medium leading-normal">${product.name}</p>
+                <p class="text-[#b8ab9d] text-sm font-normal leading-normal">${product.price}</p>
+              </div>
+            </div>
+          `;
+          productContainer.innerHTML += productElement;
+        }
+      }
+
+      function sortAndFilterProducts() {
+        let filteredProducts = [...products];
+
+        // Filter by scent
+        if (currentFilters.scent !== 'all') {
+          filteredProducts = filteredProducts.filter(p => p.scent === currentFilters.scent);
+        }
+
+        // Filter by collection
+        if (currentFilters.collection !== 'all') {
+          filteredProducts = filteredProducts.filter(p => p.collection === currentFilters.collection);
+        }
+
+        // Sort
+        if (currentSort === 'price-asc') {
+          filteredProducts.sort((a, b) => a.price - b.price);
+        } else if (currentSort === 'price-desc') {
+          filteredProducts.sort((a, b) => b.price - a.price);
+        }
+
+        displayProducts(filteredProducts);
+      }
+
+      // Initial display
+      displayProducts(products);
+
+      // Event Listeners
+      document.querySelector('button:nth-child(1)').addEventListener('click', () => {
+        // Super basic filter for now, cycles through available scents
+        const scents = ['all', ...new Set(products.map(p => p.scent))];
+        const currentIndex = scents.indexOf(currentFilters.scent);
+        currentFilters.scent = scents[(currentIndex + 1) % scents.length];
+        sortAndFilterProducts();
+      });
+
+      document.querySelector('button:nth-child(2)').addEventListener('click', () => {
+        if (currentSort === 'price-asc') {
+          currentSort = 'price-desc';
+        } else {
+          currentSort = 'price-asc';
+        }
+        sortAndFilterProducts();
+      });
+
+      document.querySelector('button:nth-child(3)').addEventListener('click', () => {
+        // Super basic filter for now, cycles through available collections
+        const collections = ['all', ...new Set(products.map(p => p.collection))];
+        const currentIndex = collections.indexOf(currentFilters.collection);
+        currentFilters.collection = collections[(currentIndex + 1) % collections.length];
+        sortAndFilterProducts();
+      });
+    </script>
   </body>
 </html>
